@@ -2,6 +2,10 @@
   <div class="container">
     <x-header :right-options="{showMore: true}" :left-options="{showBack: false}">我爱读书</x-header>
     <swiper loop auto :list="img_list" :index="img_index"></swiper>
+    <check-icon :value.sync="demo1"> {{ $t('Do you agree?') }} ({{ demo1 }})</check-icon>
+      <br>
+      <br>
+      <check-icon :value.sync="demo2" type="plain"> {{ $t('Do you agree?') }} ({{ demo2 }})</check-icon>
     <grid :cols="4" :show-lr-borders="false">
       <grid-item :label="('Grid')" v-for="i in 8" :key="i">
         <img slot="icon" src="../assets/app.png">
@@ -30,7 +34,7 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem, Group, Cell, XHeader, Grid, GridItem, Swiper, Panel } from 'vux'
+import { Tabbar, TabbarItem, Group, Cell, XHeader, Grid, GridItem, Swiper, Panel ,CheckIcon} from 'vux'
 
 const baseList = [{
   url: 'javascript:',
@@ -64,7 +68,8 @@ export default {
     Cell,
     Grid,
     GridItem,
-    Swiper
+    Swiper,
+    CheckIcon
   },
   data () {
     return {
@@ -106,7 +111,9 @@ export default {
       }],
       footer: {
         title: '更多',
-        url: 'http://vux.li'
+        url: 'http://vux.li',
+         demo1: false,
+          demo2: true
       }
     }
   }
