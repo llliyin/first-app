@@ -1,8 +1,8 @@
 # goodapp
 
-> very good app, i like it!!!
+> A Vue.js project
 
-## Build Setup Instruction
+## Build Setup
 
 ``` bash
 # install dependencies
