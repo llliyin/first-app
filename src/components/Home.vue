@@ -77,32 +77,27 @@ export default {
     GridItem,
     Swiper
   },
+  created () {
+    let _this = this
+    this.$http.post('https://api.apiopen.top/getJoke').then(({data}) => {
+      console.log(data)
+      var new_data = data.result.map((item, index) => ({
+        src: item.header,
+        fallbackSrc: item.header,
+        title: item.name,
+        desc: item.text
+      }))
+      console.log(new_data)
+      _this.list = new_data
+    })
+  },
   data () {
     return {
       img_list: urlList,
       img_index: 0,
       msg: 'Hello World!',
       type: '1',
-      list: [{
-        src: 'http://pic1.win4000.com/pic/6/cb/37b7efa318.jpg',
-        fallbackSrc: 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
-        title: '简介',
-        desc: '1988年4月16日出生于湖北武汉，中国内地男演员，毕业于北京电影学院2006级表演系本科。',
-        url: '/component/cell'
-      }, {
-        src: 'http://dingyue.nosdn.127.net/EN2JYgbfzHRAa7WC1hzUKu03E3yNuLXS7sNr4oaYvc3XZ1539822540875.jpeg',
-        title: '代表作',
-        desc: '2018年6月主演奇幻网络剧《镇魂》，分饰沈巍、夜尊、黑袍使三角，凭借精湛演绎人气飙升；9月，主演年代爱情剧《许你浮生若梦》；10月，悬疑冒险剧《盗墓笔记重启》开机，饰演吴邪；12月，在电视剧《知否知否应是绿肥红瘦》中饰演小公爷齐衡。',
-        url: {
-          path: '/component/radio',
-          replace: false
-        },
-        meta: {
-          source: '来源信息',
-          date: '时间',
-          other: '其他信息'
-        }
-      }],
+      list: [],
       footer: {
         title: '更多',
         url: 'http://vux.li'
